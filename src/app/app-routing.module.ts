@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'search',
-    redirectTo: '/search/angular',
+    redirectTo: '/search/',
     pathMatch: 'full',
     data: {
       title: 'Git Search'
