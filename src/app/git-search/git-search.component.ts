@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GitSearchService } from '../git-search.service';
 import { GitSearch } from '../git-search';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { empty } from 'rxjs';
+import { ɵangular_packages_forms_forms_g } from '@angular/forms';
 
 @Component({
   selector: 'app-git-search',
@@ -20,8 +22,15 @@ export class GitSearchComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.paramMap.subscribe( (params: ParamMap) => {
-      this.searchQuery = params.get('query');
-      this.displayQuery = params.get('query');
+
+      if(params.has('query')){
+        this.searchQuery = params.get('query');
+        this.displayQuery = params.get('query');
+      }else{
+        this.searchQuery = 'angular';
+        this.displayQuery = 'angular';
+      }
+      
       this.gitSearch();
     });
 
@@ -42,6 +51,11 @@ export class GitSearchComponent implements OnInit {
 
   sendQuery = () => {
     this.searchResults = null;
+
+    if(this.searchQuery == ""){
+      this.searchQuery = 'angular';
+      this.displayQuery = 'angular';
+    }
     this.router.navigate(['/search/' + this.searchQuery]);
   }
 }
