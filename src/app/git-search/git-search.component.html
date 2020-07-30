@@ -1,7 +1,7 @@
 <div class="container_fluid">
     <div class="row mb-sm-3">
         <div class="col-md-12">
-            <h3>{{title}}</h3>
+            <h3>{{title}} - {{displayQuery}}</h3>
         </div>
     </div>
     <div class="row">  
@@ -12,7 +12,7 @@
                   <span class="input-group-text">Search GitHub</span>
                 </div>
                 <input class="form-control" name="query" placeholder="Enter Search Here" aria-label="Search GitHub" [(ngModel)]="searchQuery"/>
-                <button class="btn btn-primary ml-sm-2" (click)="gitSearch()">Submit</button>
+                <button class="btn btn-primary ml-sm-2" (click)="sendQuery()">Submit</button>
             </div>    
         </div>
         <div class="col-md-3" style="min-width:33%;"></div>

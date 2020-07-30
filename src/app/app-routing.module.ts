@@ -11,10 +11,16 @@ const routes: Routes = [
   },
   {
     path: 'search',
-    component: GitSearchComponent,
+    redirectTo: '/search/angular',
+    pathMatch: 'full',
     data: {
       title: 'Git Search'
     }
+  },
+  {
+    path: 'search/:query',
+    component: GitSearchComponent,
+    data: { title: 'Git Search' }
   },
   {
     path: '**',
