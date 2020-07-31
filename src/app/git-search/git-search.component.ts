@@ -18,7 +18,7 @@ export class GitSearchComponent implements OnInit {
 
   model = new AdvancedSearchModel('', '', '', null, null, '');
   modelKeys = Object.keys(this.model);
-  
+
   constructor(private GitSearchService: GitSearchService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -54,10 +54,26 @@ export class GitSearchComponent implements OnInit {
   sendQuery = () => {
     this.searchResults = null;
 
-    if (this.searchQuery == "") {
-      this.searchQuery = 'angular';
-      this.displayQuery = 'angular';
+    let search: string = this.model.q;
+    let params: string = "";
+
+    this.modelKeys.forEach((elem) => {
+      if (elem === 'q') {
+        return false;
+      }
+      if (this.model[elem]) {
+        params += '+' + elem + ':' + this.model[elem];
+      }
+    });
+
+    this.searchQuery = search;
+
+    if(params !== ''){
+      this.searchQuery = search + '+' + params;
     }
-    this.router.navigate(['/search/' + this.searchQuery]);
+
+    this.displayQuery = this.searchQuery;
+
+    this.gitSearch();
   }
 }
