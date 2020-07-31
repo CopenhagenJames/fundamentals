@@ -8,13 +8,15 @@ import { GitSearchService } from './git-search.service';
 import { GitSearchComponent } from './git-search/git-search.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HotelPageComponent } from './hotel-page/hotel-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GitSearchComponent,
     HomePageComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HotelPageComponent
   ],
   imports: [
     BrowserModule,
