@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GitSearchService } from '../git-search.service';
 import { GitSearch } from '../git-search';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { empty } from 'rxjs';
-import { ɵangular_packages_forms_forms_g } from '@angular/forms';
+import { AdvancedSearchModel } from '../advanced-search-model';
 
 @Component({
   selector: 'app-git-search',
@@ -17,24 +16,27 @@ export class GitSearchComponent implements OnInit {
   title: string;
   displayQuery: string;
 
+  model = new AdvancedSearchModel('', '', '', null, null, '');
+  modelKeys = Object.keys(this.model);
+  
   constructor(private GitSearchService: GitSearchService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
 
-    this.route.paramMap.subscribe( (params: ParamMap) => {
+    this.route.paramMap.subscribe((params: ParamMap) => {
 
-      if(params.has('query')){
+      if (params.has('query')) {
         this.searchQuery = params.get('query');
         this.displayQuery = params.get('query');
-      }else{
+      } else {
         this.searchQuery = 'angular';
         this.displayQuery = 'angular';
       }
-      
+
       this.gitSearch();
     });
 
-    
+
     this.route.data.subscribe((result) => {
       this.title = result.title;
     });
@@ -52,7 +54,7 @@ export class GitSearchComponent implements OnInit {
   sendQuery = () => {
     this.searchResults = null;
 
-    if(this.searchQuery == ""){
+    if (this.searchQuery == "") {
       this.searchQuery = 'angular';
       this.displayQuery = 'angular';
     }
