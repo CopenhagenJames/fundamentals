@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotel-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelPageComponent implements OnInit {
 
-  constructor() { }
+  title: string;
+
+  constructor(private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe((result) => {
+      this.title = result.title;
+    });
   }
 
 }

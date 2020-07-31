@@ -26,9 +26,8 @@ const routes: Routes = [
   {
     path: 'hotel',
     component: HotelPageComponent,
-    data:
-    {
-      title: 'Hotels'
+    data: {
+      title: 'Hotel List'
     }
   },
   {
